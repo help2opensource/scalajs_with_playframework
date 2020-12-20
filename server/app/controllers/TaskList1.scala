@@ -6,6 +6,6 @@ import play.api.mvc._
 @Singleton
 class TaskList1 @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
   def taskList = Action {
-    Ok("Finish this endpoint")
+    Ok(views.html.taskList(List("Task 1", "Task 2", "Task 3")))
   }
 }

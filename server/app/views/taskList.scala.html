@@ -1,0 +1,11 @@
+@(tasks: List[String])
+
+@main("Task list"){
+  <h2>List of tasks</h2>
+  <ul>
+    @for(task <- tasks){
+      <li>@task</li>
+    }
+  </ul>
+}
+
