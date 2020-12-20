@@ -8,4 +8,8 @@ class TaskList1 @Inject()(cc: ControllerComponents) extends AbstractController(c
   def taskList = Action {
     Ok(views.html.taskList(List("Task 1", "Task 2", "Task 3")))
   }
+
+  def productDetails(prodName: String, prodNum: Int) = Action {
+    Ok(s"Product name: $prodName, prduct number: $prodNum")
+  }
 }
