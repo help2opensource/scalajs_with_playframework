@@ -1,7 +1,9 @@
 package controllers
 
+import play.api.mvc.{AbstractController, ControllerComponents}
+
 import javax.inject._
-import play.api.mvc._
+
 
 @Singleton
 class TaskList1 @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
