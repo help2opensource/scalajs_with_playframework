@@ -3,14 +3,17 @@
 # ~~~~
 
 # Home page
-GET        /                                                  controllers.Application.index
-GET        /product                                           controllers.TaskList1.productDetails(prodName, prodNum: Int)
-GET        /product/:prodName/:prodNum                        controllers.TaskList1.productDetails(prodName, prodNum: Int)
-GET        /productRE/$prodName<[a-z]{2}\d\d>/:prodNum        controllers.TaskList1.productDetails(prodName, prodNum: Int)
-GET        /taskList1                                         controllers.TaskList1.taskList
-GET        /login                                             controllers.Login.login
-GET        /validate                                          controllers.Login.validate(login, password)
+GET         /                                                  controllers.Application.index
+GET         /product                                           controllers.TaskList1.productDetails(prodName, prodNum: Int)
+GET         /product/:prodName/:prodNum                        controllers.TaskList1.productDetails(prodName, prodNum: Int)
+GET         /productRE/$prodName<[a-z]{2}\d\d>/:prodNum        controllers.TaskList1.productDetails(prodName, prodNum: Int)
+GET         /taskList1                                         controllers.TaskList1.taskList
+GET         /login                                             controllers.Login.login
+GET         /validateGet                                       controllers.Login.validateGet(login, password)
+
++nocsrf
+POST        /validatePost                                      controllers.Login.validatePost
 
 # Prefix must match `play.assets.urlPrefix`
-GET        /assets/*file                                      controllers.Assets.at(file)
-GET        /versionedAssets/*file                             controllers.Assets.versioned(path="/public", file: Asset)
+GET         /assets/*file                                      controllers.Assets.at(file)
+GET         /versionedAssets/*file                             controllers.Assets.versioned(path="/public", file: Asset)
