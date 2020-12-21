@@ -1,6 +1,8 @@
 package controllers
 
 import play.api.mvc._
+import services.TaskServiceInMemoryImpl
+
 import javax.inject._
 
 @Singleton
@@ -21,11 +23,14 @@ class Login @Inject() (cc: ControllerComponents)
       request.body.asFormUrlEncoded
         .map { args =>
           {
-            val login = args.get("login")
-            val password = args.get("password")
-            println(s"Logged in user: $login with password $password")
+            val login = args("login").head
+            val password = args("password").head
+            if (TaskServiceInMemoryImpl.validateUser(login, password)) {
+              Redirect(routes.TaskList.taskList())
+            } else {
+              Redirect(routes.Login.login())
+            }
           }
-          Redirect(routes.TaskList1.taskList())
         }
         .getOrElse(Redirect(routes.Login.login()))
     }
