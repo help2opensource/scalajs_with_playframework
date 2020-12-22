@@ -26,7 +26,9 @@ class Login @Inject() (cc: ControllerComponents)
             val login = args("login").head
             val password = args("password").head
             if (TaskServiceInMemoryImpl.validateUser(login, password)) {
-              Redirect(routes.TaskList.taskList())
+              Redirect(routes.TaskList.taskList(
+                TaskServiceInMemoryImpl.getTasks(login)
+              ))
             } else {
               Redirect(routes.Login.login())
             }
@@ -34,4 +36,18 @@ class Login @Inject() (cc: ControllerComponents)
         }
         .getOrElse(Redirect(routes.Login.login()))
     }
+
+  def register = Action { request =>
+    request.body.asFormUrlEncoded.map { args =>
+      val login = args("login").head
+      val password = args("password").head
+      TaskServiceInMemoryImpl.createUser(login, password) match {
+        case Some(user) => Redirect(routes.TaskList.taskList(
+          TaskServiceInMemoryImpl.getTasks(user.login)
+        ))
+        case None => Redirect(routes.Login.login())
+      }
+    }
+    Redirect(routes.Login.login())
+  }
 }

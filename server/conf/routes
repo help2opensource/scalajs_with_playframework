@@ -7,12 +7,14 @@ GET         /                                                  controllers.Appli
 GET         /product                                           controllers.TaskList.productDetails(prodName, prodNum: Int)
 GET         /product/:prodName/:prodNum                        controllers.TaskList.productDetails(prodName, prodNum: Int)
 GET         /productRE/$prodName<[a-z]{2}\d\d>/:prodNum        controllers.TaskList.productDetails(prodName, prodNum: Int)
-GET         /taskList1                                         controllers.TaskList.taskList
+GET         /taskList                                          controllers.TaskList.taskList(tasks: Seq[String])
 GET         /login                                             controllers.Login.login
 GET         /validateGet                                       controllers.Login.validateGet(login, password)
 
 +nocsrf
 POST        /validatePost                                      controllers.Login.validatePost
++nocsrf
+POST        /register                                          controllers.Login.register
 
 # Prefix must match `play.assets.urlPrefix`
 GET         /assets/*file                                      controllers.Assets.at(file)
