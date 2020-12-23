@@ -6,7 +6,7 @@ import services.TaskServiceInMemoryImpl
 import javax.inject._
 
 @Singleton
-class Login @Inject() (cc: ControllerComponents)
+class UserService @Inject()(cc: ControllerComponents)
     extends AbstractController(cc) {
   def login =
     Action { request =>
@@ -32,11 +32,11 @@ class Login @Inject() (cc: ControllerComponents)
               Redirect(routes.TaskList.taskList())
                 .withSession("username" -> login)
             } else {
-              Redirect(routes.Login.login())
+            Redirect(routes.UserService.login())
             }
           }
         }
-        .getOrElse(Redirect(routes.Login.login()))
+        .getOrElse(Redirect(routes.UserService.login()))
     }
 
   def register =
@@ -48,9 +48,13 @@ class Login @Inject() (cc: ControllerComponents)
           case Some(user) =>
             Redirect(routes.TaskList.taskList())
               .withSession("username" -> user.login)
-          case None => Redirect(routes.Login.login())
+          case None => Redirect(routes.UserService.login())
         }
       }
-      Redirect(routes.Login.login())
+      Redirect(routes.UserService.login())
     }
+
+  def logout = Action {
+    Redirect(routes.UserService.login()).withNewSession
+  }
 }

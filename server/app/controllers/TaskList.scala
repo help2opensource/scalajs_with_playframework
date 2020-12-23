@@ -16,7 +16,7 @@ class TaskList @Inject() (cc: ControllerComponents)
         .map { username =>
           Ok(views.html.taskList(TaskServiceInMemoryImpl.getTasks(username)))
         }
-        .getOrElse(Redirect(routes.Login.login()))
+        .getOrElse(Redirect(routes.UserService.login()))
     }
 
   def productDetails(prodName: String, prodNum: Int) =
