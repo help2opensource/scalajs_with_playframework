@@ -12,9 +12,7 @@ GET         /login                                             controllers.UserS
 GET         /logout                                            controllers.UserService.logout
 GET         /validateGet                                       controllers.UserService.validateGet(login, password)
 
-+nocsrf
 POST        /validatePost                                      controllers.UserService.validatePost
-+nocsrf
 POST        /register                                          controllers.UserService.register
 
 # Prefix must match `play.assets.urlPrefix`

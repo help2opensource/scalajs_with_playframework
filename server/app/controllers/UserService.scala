@@ -9,7 +9,7 @@ import javax.inject._
 class UserService @Inject()(cc: ControllerComponents)
     extends AbstractController(cc) {
   def login =
-    Action { request =>
+    Action { implicit request =>
       request.session.get("username") match {
         case Some(_) => Redirect(routes.TaskList.taskList())
         case None    => Ok(views.html.login())
