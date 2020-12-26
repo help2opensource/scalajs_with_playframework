@@ -1,8 +1,17 @@
 @(title: String)(content: Html)(implicit flash: Flash)
-@alert(error: String) = {
-    <script>
-            alert('@error')
-    </script>
+@errorFieldset(error: String) = {
+    <fieldset style="border: 1px red solid;
+        color: red">
+        <legend>Error</legend>
+        @error
+    </fieldset>
+}
+@successFieldset(success: String) = {
+    <fieldset style="border: 1px green solid;
+        color: green">
+        <legend>Success</legend>
+        @success
+    </fieldset>
 }
 
 <!DOCTYPE html>
@@ -17,7 +26,8 @@
         <a href="@routes.UserService.login">Login</a>
         <a href="@routes.TaskList.taskList">Tasks</a>
         <br>
-            @flash.get("error").map(error => alert(error))
+            @flash.get("error").map(e => errorFieldset(e))
+            @flash.get("success").map(s => successFieldset(s))
             @content
             @scalajs.html.scripts("client", routes.Assets.versioned(_).toString, name => getClass.getResource(s"/public/$name") != null)
     </body>
