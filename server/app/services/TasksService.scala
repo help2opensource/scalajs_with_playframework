@@ -8,7 +8,7 @@ trait TasksService {
   def validateUser(login: String, password: String): Boolean
   def createUser(login: String, password: String): Option[User]
   def getTasks(login: String): Seq[String]
-  def addTask(task: String): String
+  def addTask(login: String, task: String): Unit
   def removeTask(task: String): Unit
 }
 
@@ -36,7 +36,7 @@ object TaskServiceInMemoryImpl extends TasksService {
 
   override def getTasks(login: String): Seq[String] = tasks.getOrElse(login, Nil)
 
-  override def addTask(task: String): String = ???
+  override def addTask(login: String, task: String): Unit = tasks(login) = task :: tasks.getOrElse(login, Nil)
 
   override def removeTask(task: String): Unit = ???
 }

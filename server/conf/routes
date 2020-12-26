@@ -4,16 +4,16 @@
 
 # Home page
 GET         /                                                  controllers.Application.index
-GET         /product                                           controllers.TaskList.productDetails(prodName, prodNum: Int)
-GET         /product/:prodName/:prodNum                        controllers.TaskList.productDetails(prodName, prodNum: Int)
-GET         /productRE/$prodName<[a-z]{2}\d\d>/:prodNum        controllers.TaskList.productDetails(prodName, prodNum: Int)
-GET         /taskList                                          controllers.TaskList.taskList
+GET         /product                                           controllers.TasksController.productDetails(prodName, prodNum: Int)
+GET         /product/:prodName/:prodNum                        controllers.TasksController.productDetails(prodName, prodNum: Int)
+GET         /productRE/$prodName<[a-z]{2}\d\d>/:prodNum        controllers.TasksController.productDetails(prodName, prodNum: Int)
+GET         /taskList                                          controllers.TasksController.taskList
 GET         /login                                             controllers.UserService.login
 GET         /logout                                            controllers.UserService.logout
 GET         /validateGet                                       controllers.UserService.validateGet(login, password)
-
 POST        /validatePost                                      controllers.UserService.validatePost
 POST        /register                                          controllers.UserService.register
+POST        /addTask                                           controllers.TasksController.addTask
 
 # Prefix must match `play.assets.urlPrefix`
 GET         /assets/*file                                      controllers.Assets.at(file)

@@ -8,6 +8,13 @@
     }
   </ul>
 
+  <form action="@routes.TasksController.addTask" method="post">
+    @helper.CSRF.formField
+    <label for="newTask">New Task</label>
+    <input type="text" name="newTask" id="newTask">
+    <input type="submit" value="Submit">
+  </form>
+
   <div>
     <a href="@routes.UserService.logout">Logout</a>
   </div>

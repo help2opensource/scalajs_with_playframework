@@ -11,7 +11,7 @@ class UserService @Inject()(cc: ControllerComponents)
   def login =
     Action { implicit request =>
       request.session.get("username") match {
-        case Some(_) => Redirect(routes.TaskList.taskList())
+        case Some(_) => Redirect(routes.TasksController.taskList())
         case None => Ok(views.html.login())
       }
     }
@@ -28,7 +28,7 @@ class UserService @Inject()(cc: ControllerComponents)
           val login = args("login").head
           val password = args("password").head
           if (TaskServiceInMemoryImpl.validateUser(login, password))
-            Redirect(routes.TaskList.taskList())
+            Redirect(routes.TasksController.taskList())
               .withSession("username" -> login)
               .flashing("success" -> "Successfully logged in.")
           else Redirect(routes.UserService.login())
@@ -44,7 +44,7 @@ class UserService @Inject()(cc: ControllerComponents)
         TaskServiceInMemoryImpl.createUser(login, password) match {
           case Some(user) =>
             println(user)
-            Redirect(routes.TaskList.taskList())
+            Redirect(routes.TasksController.taskList())
               .withSession("username" -> login)
           case None => Redirect(routes.UserService.login())
             .flashing("error" -> "User creation unsuccessful.")

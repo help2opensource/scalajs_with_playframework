@@ -24,7 +24,7 @@
     </head>
     <body>
         <a href="@routes.UserService.login">Login</a>
-        <a href="@routes.TaskList.taskList">Tasks</a>
+        <a href="@routes.TasksController.taskList">Tasks</a>
         <br>
             @flash.get("error").map(e => errorFieldset(e))
             @flash.get("success").map(s => successFieldset(s))

@@ -6,7 +6,7 @@ import services.TaskServiceInMemoryImpl
 import javax.inject._
 
 @Singleton
-class TaskList @Inject()(cc: ControllerComponents)
+class TasksController @Inject()(cc: ControllerComponents)
   extends AbstractController(cc) {
 
   def taskList =
@@ -17,6 +17,16 @@ class TaskList @Inject()(cc: ControllerComponents)
           Ok(views.html.taskList(TaskServiceInMemoryImpl.getTasks(username)))
         }.getOrElse(Redirect(routes.UserService.login()))
     }
+
+  def addTask = Action { implicit request => {
+    request.session.get("username").flatMap(login => {
+      request.body.asFormUrlEncoded.map(args => {
+        val task = args("newTask").head
+        TaskServiceInMemoryImpl.addTask(login, task)
+        Redirect(routes.TasksController.taskList())
+      })
+    }).getOrElse(Redirect(routes.UserService.login()))
+  }}
 
   def productDetails(prodName: String, prodNum: Int) =
     Action {
