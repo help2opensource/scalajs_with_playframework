@@ -23,9 +23,11 @@ object TaskServiceInMemoryImpl extends TasksService {
   override def createUser(login: String, password: String): Option[User] = {
     users.get(login) match {
       case None =>
+        println("none")
         users += (login -> password)
         Some(User(login, password))
       case Some(savedPassword) =>
+        println(savedPassword)
         if (savedPassword == password) {
           Some(User(login, password))
         } else None

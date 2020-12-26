@@ -1,17 +1,24 @@
-@(title: String)(content: Html)
+@(title: String)(content: Html)(implicit flash: Flash)
+@alert(error: String) = {
+    <script>
+            alert('@error')
+    </script>
+}
 
 <!DOCTYPE html>
 
 <html>
-  <head>
-    <title>@title</title>
-    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
-    <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
-  </head>
-  <body>
-    <a href="@routes.UserService.login">Login</a>
-    <a href="@routes.TaskList.taskList">Tasks</a>
-    @content
-    @scalajs.html.scripts("client", routes.Assets.versioned(_).toString, name => getClass.getResource(s"/public/$name") != null)
-  </body>
+    <head>
+        <title>@title</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
+    </head>
+    <body>
+        <a href="@routes.UserService.login">Login</a>
+        <a href="@routes.TaskList.taskList">Tasks</a>
+        <br>
+            @flash.get("error").map(error => alert(error))
+            @content
+            @scalajs.html.scripts("client", routes.Assets.versioned(_).toString, name => getClass.getResource(s"/public/$name") != null)
+    </body>
 </html>

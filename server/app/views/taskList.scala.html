@@ -1,4 +1,4 @@
-@(tasks: Seq[String])
+@(tasks: Seq[String])(implicit requestHeader: RequestHeader, flash: Flash)
 
 @main("Task list"){
   <h2>List of tasks</h2>
