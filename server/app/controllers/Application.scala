@@ -15,5 +15,9 @@ class Application @Inject()(cc: ControllerComponents) extends AbstractController
   def getRandomNumber = Action {
     Ok(scala.util.Random.nextInt(100).toString)
   }
+
+  def getRandomString(length: Int) = Action {
+    Ok(scala.util.Random.nextString(length))
+  }
   
 }

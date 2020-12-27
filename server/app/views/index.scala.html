@@ -7,7 +7,10 @@
   <li>Scala.js shouts out: <em id="scalajsShoutOut"></em></li>
 </ul>
 
-  <p id="randomNumberParagraph" style="cursor: pointer">Click to get new random number: <span id="randomNumber">4</span></p>
+  <p id="randomNumberParagraph" style="cursor: pointer;">Click to get new random number: <span id="randomNumber"></span></p>
 
+  <label for="randomStringLength">Length of random string</label>
+  <input id="randomStringLength" type="number" value="5">
+  <p id="randomStringParagraph" style="cursor: pointer;">Click to get new random string of given length: <span id="randomString"></span></p>
   <script src="@routes.Assets.versioned("js/main.js")"></script>
 }
