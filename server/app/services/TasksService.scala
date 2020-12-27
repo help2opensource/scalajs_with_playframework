@@ -9,7 +9,7 @@ trait TasksService {
   def createUser(login: String, password: String): Option[User]
   def getTasks(login: String): Seq[String]
   def addTask(login: String, task: String): Unit
-  def removeTask(task: String): Unit
+  def removeTask(login: String, taskIndex: Integer): Unit
 }
 
 object TaskServiceInMemoryImpl extends TasksService {
@@ -23,11 +23,9 @@ object TaskServiceInMemoryImpl extends TasksService {
   override def createUser(login: String, password: String): Option[User] = {
     users.get(login) match {
       case None =>
-        println("none")
         users += (login -> password)
         Some(User(login, password))
       case Some(savedPassword) =>
-        println(savedPassword)
         if (savedPassword == password) {
           Some(User(login, password))
         } else None
@@ -38,5 +36,6 @@ object TaskServiceInMemoryImpl extends TasksService {
 
   override def addTask(login: String, task: String): Unit = tasks(login) = task :: tasks.getOrElse(login, Nil)
 
-  override def removeTask(task: String): Unit = ???
+  // can login be implicit?
+  override def removeTask(login: String, taskIndex: Integer): Unit = tasks(login) = tasks(login).patch(taskIndex, Nil, 1)
 }

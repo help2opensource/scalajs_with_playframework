@@ -32,4 +32,14 @@ class TasksController @Inject()(cc: ControllerComponents)
     Action {
       Ok(s"Product name: $prodName, product number: $prodNum")
     }
+
+  def deleteTask = Action { implicit request => {
+    request.session.get("username").flatMap(login => {
+      request.body.asFormUrlEncoded.map(args => {
+        val index = args("index").head.toInt
+        TaskServiceInMemoryImpl.removeTask(login, index)
+        Redirect(routes.TasksController.taskList())
+      })
+    }).getOrElse(Redirect(routes.UserService.login()))
+  }}
 }

@@ -43,7 +43,6 @@ class UserService @Inject()(cc: ControllerComponents)
         val password = args("password").head
         TaskServiceInMemoryImpl.createUser(login, password) match {
           case Some(user) =>
-            println(user)
             Redirect(routes.TasksController.taskList())
               .withSession("username" -> login)
           case None => Redirect(routes.UserService.login())
