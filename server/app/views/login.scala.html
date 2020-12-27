@@ -5,10 +5,10 @@
         <legend>Login using get</legend>
         <form action="/validateGet">
             @helper.CSRF.formField
-            <label for="login">Login</label>
-            <input type="text" name="login" id="login">
-            <label for="password">Password</label>
-            <input type="text" name="password" id="password">
+            <label for="login-login-get">Login</label>
+            <input type="text" name="login" id="login-login-get">
+            <label for="password-login-get">Password</label>
+            <input type="text" name="password" id="password-login-get">
             <input type="submit" value="Submit">
         </form>
     </fieldset>
@@ -17,10 +17,10 @@
         <legend>Login using post</legend>
         <form action="@routes.UserService.validatePost" method="post">
             @helper.CSRF.formField
-            <label for="login">Login</label>
-            <input type="text" name="login" id="login">
-            <label for="password">Password</label>
-            <input type="text" name="password" id="password">
+            <label for="login-login-post">Login</label>
+            <input type="text" name="login" id="login-login-post">
+            <label for="password-login-post">Password</label>
+            <input type="text" name="password" id="password-login-post">
             <input type="submit" value="Submit">
         </form>
     </fieldset>
