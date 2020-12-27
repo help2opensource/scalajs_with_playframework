@@ -13,6 +13,7 @@ GET         /logout                                            controllers.UserS
 GET         /validateGet                                       controllers.UserService.validateGet(login, password)
 POST        /validatePost                                      controllers.UserService.validatePost
 POST        /register                                          controllers.UserService.register
+POST        /registerForm                                      controllers.UserService.validateRegisterForm
 POST        /addTask                                           controllers.TasksController.addTask
 POST        /deleteTask                                        controllers.TasksController.deleteTask
 

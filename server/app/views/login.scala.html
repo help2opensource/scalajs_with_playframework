@@ -1,4 +1,4 @@
-@()(implicit requestHeader: RequestHeader, flash: Flash)
+@(registerData: Form[RegisterData])(implicit messagesRequestHeader: MessagesRequestHeader, flash: Flash)
 
 @main("Login") {
     <fieldset style="border: 1px black solid">
@@ -35,5 +35,18 @@
             <input type="text" name="password" id="password">
             <input type="submit" value="Submit">
         </form>
+    </fieldset>
+
+    <fieldset style="border: 1px black solid">
+        <legend>Register using Play Forms</legend>
+        @helper.form(action = routes.UserService.validateRegisterForm()) {
+            @helper.CSRF.formField
+            @helper.inputText(registerData("Login"))
+            @helper.inputText(registerData("Password"))
+            <div class="form-actions">
+                <button type="submit">Register</button>
+            </div>
+        }
+
     </fieldset>
 }
