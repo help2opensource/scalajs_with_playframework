@@ -21,8 +21,10 @@
         <title>@title</title>
         <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
     <body>
+        <a href="/">Home</a>
         <a href="@routes.UserService.login">Login</a>
         <a href="@routes.TasksController.taskList">Tasks</a>
         <br>

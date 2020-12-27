@@ -11,5 +11,9 @@ class Application @Inject()(cc: ControllerComponents) extends AbstractController
   def index = Action { implicit request =>
     Ok(views.html.index(SharedMessages.itWorks))
   }
+
+  def getRandomNumber = Action {
+    Ok(scala.util.Random.nextInt(100).toString)
+  }
   
 }

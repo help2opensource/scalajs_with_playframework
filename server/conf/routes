@@ -11,6 +11,7 @@ GET         /taskList                                          controllers.Tasks
 GET         /login                                             controllers.UserService.login
 GET         /logout                                            controllers.UserService.logout
 GET         /validateGet                                       controllers.UserService.validateGet(login, password)
+GET         /random                                            controllers.Application.getRandomNumber
 POST        /validatePost                                      controllers.UserService.validatePost
 POST        /register                                          controllers.UserService.register
 POST        /registerForm                                      controllers.UserService.validateRegisterForm
